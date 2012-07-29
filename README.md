@@ -15,17 +15,17 @@ Add the plugin to your page
 
 Apply it to a canvas object, and pass in the image, the caption and the optional parameters
 
-    <pre>
-      $("#canvas").texposition( image, $(".title"), { 
-        proportion: 1/3,
-        orientation: "bottom",
-    	pixelIntensityThreshold: 160,
-    	threshold: 0.5,
-    	labelClass: "title",
-    	lightClass: "light-wash",
-    	darkClass: "dark-wash"
-      });
-    </pre>
+    
+    $("#canvas").texposition( image, $(".title"), { 
+      proportion: 1/3,
+      orientation: "bottom",
+      pixelIntensityThreshold: 160,
+      threshold: 0.5,
+      labelClass: "title",
+      lightClass: "light-wash",
+      darkClass: "dark-wash"
+    });
+    
     
 where
 * proportion - fraction of image covered by caption
