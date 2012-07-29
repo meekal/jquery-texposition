@@ -9,19 +9,24 @@ jQuery, browsers that support canvas
 ###Usage
 
 Add the plugin to your page
+
     <link type="text/css" href="texposition.css">
     <script type="text/javascript" src="jquery.texposition.js"></script>
 
 Apply it to a canvas object, and pass in the image, the caption and the optional parameters
-    $("#canvas").texposition( image, $(".title"), { proportion: 1/3,
-    	orientation: "bottom",
+
+    <pre>
+      $("#canvas").texposition( image, $(".title"), { 
+        proportion: 1/3,
+        orientation: "bottom",
     	pixelIntensityThreshold: 160,
     	threshold: 0.5,
     	labelClass: "title",
     	lightClass: "light-wash",
     	darkClass: "dark-wash"
-    });
-
+      });
+    </pre>
+    
 where
 * proportion - fraction of image covered by caption
 * orientation - position of caption on the image and can be one of top, bottom, right, left
