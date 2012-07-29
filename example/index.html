@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Texposition</title>
+    <link rel="stylesheet" href="public/styles/styles.css">
+  </head>
+  <body>
+    <header id="header" class="header">
+      <h3 class="page-title">
+        Smart labels 
+        <span class="source">Meekal Bajaj <a href="http://www.twitter.com/mbe">@mbe</a></span>
+      </h3>
+    </header><!-- /header -->
+    <div class="container">
+      <figure class="title-image" id="dropbox">
+        <canvas id="canvas" class="empty-dropzone dropzone canvas"></canvas>   
+        <figcaption class="title" id="title">
+          <h3 class="heading">Smart label backgrounds</h3>
+          <p class="description">The background color of this text container adapts itself to the content of the image behind it. It blends in, showing darker backrounds for darker images.</p>
+        </figcaption>
+      </figure>      
+    <ul id="orientation-selector" class="orientation-selector">
+      <li class="orientation top" data-orientation="top"></li>
+      <li class="orientation right" data-orientation="right"></li>
+      <li class="orientation bottom selected" data-orientation="bottom"></li>
+      <li class="orientation left" data-orientation="left"></li>
+    </ul>
+
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="public/scripts/jquery.filedrop.js"></script>
+    <script type="text/javascript" src="public/scripts/jquery.texposition.js"></script>
+    <script type="text/javascript" src="public/scripts/app.js"></script>
+  </body>
+</html>

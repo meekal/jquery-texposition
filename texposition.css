@@ -1,0 +1,75 @@
+.light-wash {
+  color: #333;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.6) ;
+}
+
+.dark-wash {
+  color: #f8f8f8;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.6) ;
+}
+
+.light-wash-top {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: linear-gradient(bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+
+}
+.light-wash-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+}
+.light-wash-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -o-linear-gradient(right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: linear-gradient(right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+}
+.light-wash-right {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: -ms-linear-gradient(left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+  background-image: linear-gradient(left, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+}
+.dark-wash-top {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+.dark-wash-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+.dark-wash-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: linear-gradient(right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
+.dark-wash-right {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  background-image: linear-gradient(left, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+}
