@@ -1,0 +1,4 @@
+texposition
+===========
+
+Smart image captions
