@@ -26,7 +26,7 @@
     proportion: 1/3,
     orientation: "bottom",
     pixelIntensityThreshold: 160,
-    threshold: 0.5,
+    threshold: 0.65,
     labelClass: "title",
     lightClass: "light-wash",
     darkClass: "dark-wash"
@@ -69,15 +69,15 @@
       }
       case "bottom": {
         indices.start = totalWidth * totalHeight * (1 - defaults.proportion);
-        indices.end = totalLength
+        indices.end = totalLength;
         break;
       }
       default: {
         break;
       }
     }
-    indices.start = Math.floor(indices.start);
-    indices.end = Math.floor(indices.end);
+    indices.start = Math.floor(indices.start) * 4;
+    indices.end = Math.floor(indices.end) * 4;
 
     return indices;
   }
@@ -88,8 +88,8 @@
 
     if(indices.areSegmented) {
       for (var j = 0; j < imgHeight; j++) {
+        var offset = j*imgWidth*4;
         for (var i = indices.start; i < indices.end; i += 4) {
-          var offset = j*imgWidth;
           var r = imgDataVals[i + offset];
           var g = imgDataVals[i+1 + offset];
           var b = imgDataVals[i+2 + offset];
@@ -108,6 +108,7 @@
         counter += 1;
       }
     }
+    console.log(sum, counter, sum/counter, defaults.threshold);
 
     if(sum/counter < defaults.threshold) {
       return true;
@@ -135,8 +136,8 @@
         $.extend( true, cssMap, {
           "bottom": 0,
           "left": "50%",
-          "width": canvasWidth,
-          "margin-left": -canvasWidth/2        
+          "width": canvasWidth + 3,
+          "margin-left": -canvasWidth/2 - 1       
         });
         break;
       }
@@ -145,8 +146,8 @@
         $.extend(true, cssMap, {
           "top": 0,
           "left": "50%",
-          "width": canvasWidth,          
-          "margin-left": -canvasWidth/2       
+          "width": canvasWidth + 3,          
+          "margin-left": -canvasWidth/2 - 1       
         });
         break;
       }
@@ -164,7 +165,7 @@
 
       case "right": {
         $.extend(true, cssMap, {
-          "right": 0,
+          "right": -1,
           "top": 0,
           "height": canvasHeight + 2,
           "width": canvasWidth * defaults.proportion
@@ -193,7 +194,8 @@
     $label.css(cssMap);
 
     var classString = defaults.labelClass;
-    var indices = getIndicesForImageSection(imgWidth, imgHeight, imgDataVals.length);
+    console.log(imgHeight * imgWidth, imgDataVals.length, imgDataVals.length/(imgWidth * imgHeight));
+    var indices = getIndicesForImageSection(imgWidth, imgHeight, imgWidth * imgHeight);
     var useDarkBackground = isImageSectionDark(imgDataVals, imgWidth, imgHeight, indices);
 
     if(useDarkBackground) {

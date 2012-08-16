@@ -92,11 +92,13 @@ body {
 
 .title-image {
   position: relative;
+  margin: 0;
   margin-top: 10px;
   display: inline-block;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 12px rgba(0,0,0,0.6);
   box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 12px rgba(0,0,0,0.6);
+
 }
 
 .title {
@@ -109,9 +111,33 @@ body {
           box-sizing: border-box;
 }
 
+.sample-images {
+  overflow: hidden;
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #333;
+  padding: 10px; 
+  text-align: center;
+
+  margin: 20px auto;
+}
+
+.sample-image {
+  opacity: 0.5;
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.sample-image:hover {
+  opacity: 1;
+}
+.sample-image img {
+  max-height: 90px;
+}
+
 .orientation-selector {
   position: absolute;
-  right: -24px;
+  right: -60px;
   top: 0;
   display: none;
 }
@@ -123,7 +149,6 @@ body {
   width: 20px;
   background-color: #ccc;
   border-radius: 4px;
-  box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .orientation:hover {
