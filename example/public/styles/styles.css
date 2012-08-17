@@ -170,7 +170,7 @@ body {
 }
 
 .orientation-selector .bottom {
-  top: 48px;
+  top: 24px;
   left: 24px;
 }
 
@@ -179,8 +179,21 @@ body {
   left: 0;
 }
 
+.orientation-selector .auto {
+  top: 54px;
+  left: 0;
+  width: 68px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #555;
+  font-weight: bold;
+}
+
 .orientation-selector .selected {
   background-color: #138FE2;
+  color: whitesmoke;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
 }
 

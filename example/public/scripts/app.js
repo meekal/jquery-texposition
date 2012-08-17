@@ -6,7 +6,7 @@ var default_orientation = "bottom";
 var filenames = [
   "public/assets/sample_images/sandals.png",
   "public/assets/sample_images/bench.jpeg",
-  "public/assets/sample_images/sky.jpeg",
+  "public/assets/sample_images/statue.jpeg",
   "public/assets/sample_images/bay.png",
 ];
 
@@ -121,7 +121,6 @@ function preloadimages(images){
 $(".orientation").click(function() {
   $(this).siblings().removeClass("selected");
   $(this).addClass("selected");  
-
   positionText();
 });
 

@@ -24,12 +24,13 @@
 (function($) {
   var defaults = {
     proportion: 1/3,
-    orientation: "bottom",
+    orientation: "auto",
     pixelIntensityThreshold: 160,
     threshold: 0.65,
     labelClass: "title",
     lightClass: "light-wash",
-    darkClass: "dark-wash"
+    darkClass: "dark-wash",
+    showEdges: "false"
   }
 
   function drawImageOnCanvas($canvas, canvasContext, img, imgWidth, imgHeight) {
@@ -42,14 +43,14 @@
     return canvasContext.getImageData(0, 0, canvas.width, canvas.height);
   }
 
-  function getIndicesForImageSection(totalWidth, totalHeight, totalLength) {
+  function getIndicesForImageSection(totalWidth, totalHeight, totalLength, orientation) {
     var indices = {
       start: 0,
       end: 0,
       areSegmented: false
     }
 
-    switch(defaults.orientation) {
+    switch(orientation) {
       case "left": {
         indices.start = 0;
         indices.end = totalWidth * defaults.proportion;
@@ -82,6 +83,12 @@
     return indices;
   }
 
+
+  function detectOrientation() {
+
+    return orientation;
+  }
+
   function isImageSectionDark(imgDataVals, imgWidth, imgHeight, indices) {
     var sum = 0;
     var counter = 0;
@@ -108,7 +115,6 @@
         counter += 1;
       }
     }
-    console.log(sum, counter, sum/counter, defaults.threshold);
 
     if(sum/counter < defaults.threshold) {
       return true;
@@ -177,9 +183,95 @@
     return cssMap;
   }
 
+  function getImageActivity(imgDataVals, imgWidth, imgHeight, indices) {
+    var sum = 0;
+    var counter = 0;
+
+    if(indices.areSegmented) {
+      for (var j = 0; j < imgHeight; j++) {
+        var offset = j*imgWidth*4;
+        for (var i = indices.start; i < indices.end; i += 4) {
+          var val = imgDataVals[i + offset];
+          if( !isNaN(val) ) {
+            sum += val;
+          }
+          counter += 1;
+        } 
+      }
+    } else {
+      for (var i = indices.start; i < indices.end; i += 4) {
+        var val = imgDataVals[i];
+        if( !isNaN(val) ) {
+          sum += val;
+        }
+        counter += 1;
+      }
+    }
+
+    if(counter > 0) {
+      return sum/counter;
+    } else {
+      return 0;
+    }
+  }
+
+  function createEdgeImage(pixels) {
+    var threshold = Filters.threshold(pixels, 127);
+    var vertical = Filters.convoluteFloat32(threshold,
+      [ -1, 0, 1,
+        -2, 0, 2,
+        -1, 0, 1 
+      ]
+    );
+
+    var horizontal = Filters.convoluteFloat32(threshold,
+      [ -1, -2, -1,
+         0,  0,  0,
+         1,  2,  1 
+      ]
+    );
+
+    var final_image = Filters.createImageData(vertical.width, vertical.height);
+
+    for (var i=0; i<final_image.data.length; i+=4) {
+      var v = Math.abs(vertical.data[i]);
+      var h = Math.abs(horizontal.data[i]);
+      
+      var bit_val = v || h;
+
+      if(bit_val > 0) {         
+        bit_val = 255;
+      }
+
+      final_image.data[i] = final_image.data[i+1] = final_image.data[i+2] = bit_val;
+      final_image.data[i+3] = 255; // opaque alpha
+    }
+
+    return final_image;
+  }
+
+  function getOrientation(pixels) {
+    var edge_image = createEdgeImage(pixels);
+
+    var orientation_map = { 0: "bottom", 1: "right", 2: "top", 3: "left"};
+    var activity_by_region = [];
+    var edge_image_width = edge_image.width;
+    var edge_image_height = edge_image.height;
+
+    for (var i = 0; i < 4; i++) {
+      var indices = getIndicesForImageSection( edge_image_width, edge_image_height, edge_image_width * edge_image_height, orientation_map[i] );
+      activity_by_region.push( getImageActivity( edge_image.data, edge_image_width, edge_image_height, indices) );
+    }
+
+    //find min value in array
+    var min_val = Math.min.apply(Math, activity_by_region);    
+    var index = activity_by_region.indexOf(min_val);
+
+    return orientation_map[index];
+  }
+
   $.fn.texposition = function(img, $label, options) {
     $.extend(true, defaults, options);
-
     var canvasContext = this[0].getContext("2d"); //get underlying object from jQuery
     var imgWidth = img.width;
     var imgHeight = img.height;
@@ -188,14 +280,17 @@
     var imgData = getPixels(canvasContext);
     var imgDataVals = imgData.data;
 
+    if(defaults.orientation == "auto") {
+      defaults.orientation = getOrientation(imgData);      
+    }
+
     var canvasWidth = $(this).width();
     var canvasHeight = $(this).height();
     var cssMap = setCSSMap($label, canvasWidth, canvasHeight);
     $label.css(cssMap);
 
     var classString = defaults.labelClass;
-    console.log(imgHeight * imgWidth, imgDataVals.length, imgDataVals.length/(imgWidth * imgHeight));
-    var indices = getIndicesForImageSection(imgWidth, imgHeight, imgWidth * imgHeight);
+    var indices = getIndicesForImageSection(imgWidth, imgHeight, imgWidth * imgHeight, defaults.orientation);
     var useDarkBackground = isImageSectionDark(imgDataVals, imgWidth, imgHeight, indices);
 
     if(useDarkBackground) {
